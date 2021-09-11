@@ -23,11 +23,11 @@ public class Carcontroller {
     public Car criateCar (@RequestBody @Validated Car car){ return carService.postCar(car);}
 
     @GetMapping
-    public List<Car> getPersona(){ return carService.getCar();}
+    public List<Car> getCar(){ return carService.getCar();}
 
     @GetMapping("/{id}")
-    public ResponseEntity<Car> getCarId (@PathVariable Long id) throws Exception {
-        return ResponseEntity.ok(carService.getCar(id).orElseThrow(() ->
+    public ResponseEntity<Car> getCarId (@PathVariable Long id) throws Exception, carNotFoundException {
+        return ResponseEntity.ok(carService.getCarId(id).orElseThrow(() ->
             new carNotFoundException("Car whit id " + id + "not found ")));
     }
 
